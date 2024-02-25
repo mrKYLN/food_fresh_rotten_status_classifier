@@ -1,0 +1,4 @@
+*env/*
+*webapp/example_project/*
+*.idea
+*.idl

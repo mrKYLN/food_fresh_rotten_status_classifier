@@ -1,0 +1,6 @@
+VIDEO_INSTALLER_INPUT_PATH = "./data/input/links.txt"
+VIDEO_INSTALLER_OUTPUT_PATH = "./data/output/video/"
+
+VIDEO_TO_IMAGE_SPLITTER_OUTPUT_PATH = "./data/output/image/"
+VIDEO_TO_IMAGE_SPLITTER_IMAGE_NAME = "{}_image_{}.jpg"
+VIDEO_TO_IMAGE_SPLITTER_VIDEO_SUFFIX = ".mp4"

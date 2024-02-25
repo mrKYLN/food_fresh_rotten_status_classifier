@@ -1,0 +1,88 @@
+
+{% extends "base.html" %} 
+
+  {% block content %}
+
+  <div class="container">
+      <br><br>
+      <form class="form-horizontal" action="/submit" method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="pwd"> • Upload Your Image :</label>
+          
+          <br>
+
+          <div class="col-sm-15">          
+            <input type="file" class="form-control" placeholder="Hours Studied"  name="my_image" id="pwd">
+          </div>
+        </div>
+
+        <br>
+
+        <label class="control-label col-sm-2" for="pwd"> • Model Type : </label>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1">Self Organized Map Model</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+          <label class="form-check-label" for="flexRadioDefault2">Clustring Model</label>
+        </div>
+
+        <br>
+
+        <div class="form-group">        
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">Submit</button>
+          </div>
+        </div>
+      </form>
+
+      <br>
+      
+      {% if prediction %}
+      <div class="card mb-3 center">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{ url_for('static', filename='images/' + img_path)  }}"  class="img-fluid rounded-start" >
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Your Prediction </h5>
+              <p class="card-text">{{prediction}} </p>
+              <p class="card-text">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button text-muted" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      Is the guess wrong?
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="accordion-body">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                          <label class="form-check-label" for="flexRadioDefault1">Fresh</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                          <label class="form-check-label" for="flexRadioDefault2">Middle Fresh</label>
+                        </div>                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <br>
+
+    </div>
+  {% endblock %}
+
+
+
+
+

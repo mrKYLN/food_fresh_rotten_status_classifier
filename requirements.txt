@@ -1,0 +1,9 @@
+pytube
+opencv-python
+numpy
+flask
+matplotlib
+minisom
+joblib
+pillow
+skimage
