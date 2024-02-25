@@ -37,7 +37,7 @@ def load_images_and_labels(folders):
 # Load images
 folders = ['./level_1', './level_2', './level_3']
 image_and_labels_dict = load_images_and_labels(folders)
-
+#test
 
 # Check if images are loaded
 if len(image_and_labels_dict) == 0:
