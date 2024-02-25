@@ -11,12 +11,14 @@ import os
 import joblib
 import uuid
 import pandas as pd
+from sklearn.model_selection import GroupShuffleSplit
 
 # Function to load images and labels
 def load_images_and_labels(folders):
     images = []
     labels = []
-    result = {}
+    result = []
+    id = 1
     for folder in folders:
         for filename in glob.glob(os.path.join(folder, '*.jpg')):
             img = imread(filename)
@@ -27,26 +29,42 @@ def load_images_and_labels(folders):
             img_resized = resize(img, (64, 64), anti_aliasing=True)  # Resize image
             #images.append(img_resized.flatten())  # Flatten and append to list
             #labels.append(os.path.basename(folder))  # Use folder name as label
-            result["uuid"] = uuid.uuid4()
-            result["image"] = img_resized.flatten()
-            result["label"] = os.path.basename(folder)
-
-
-    return result
+            result.append((id, img_resized.flatten(), os.path.basename(folder)))
+            id = id+1
+    return pd.DataFrame(result, columns=["id", "image", "label"])
 
 # Load images
 folders = ['./level_1', './level_2', './level_3']
-image_and_labels_dict = load_images_and_labels(folders)
+main_df = load_images_and_labels(folders)
 #test
 
 # Check if images are loaded
-if len(image_and_labels_dict) == 0:
+if len(main_df) == 0:
     raise ValueError("No images loaded. Please check folder paths.")
 
 # Veri setini eğitim, doğrulama ve test setlerine ayır
-original_data = pd.DataFrame(image_and_labels_dict)
-X_train, X_temp, y_train, y_temp = train_test_split(original_data["image"], original_data["label"], test_size=0.4, random_state=42)
-X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
+X = main_df.copy().drop(columns=['label'])
+y = main_df.label
+
+#X_train, X_temp, y_train, y_temp = train_test_split(original_data["image"], original_data["label"], test_size=0.4, random_state=42)
+#X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
+
+gs = GroupShuffleSplit(n_splits=2, test_size=None, train_size=.6, random_state=42)
+X_train, X_temp = next(gs.split(X, y, groups=X.id))
+X_train_data = X.loc[X_train]
+y_train = y.loc[X_train]
+X_temp_data = X.loc[X_temp]
+y_temp = y.loc[X_temp]
+
+X_temp_data = X_temp_data.reset_index(drop=True)
+y_temp = y_temp.reset_index(drop=True)
+gs2 = GroupShuffleSplit(n_splits=2, test_size=0.5, random_state=42)
+X_val, X_test = next(gs2.split(X_temp_data, y_temp, groups=X_temp_data.id))
+X_val_data = X_temp_data.loc[X_val]
+y_val = y_temp.loc[X_val]
+X_test_data = X_temp_data.loc[X_test]
+y_test = y_temp.loc[X_test]
+
 
 # Verileri ölçeklendir
 scaler = MinMaxScaler()
