@@ -1,0 +1,2 @@
+En iyi parametreler: {'learning_rate': 0.7704873570467585, 'num_iteration': 3, 'sigma': 0.24279876776123493}
+Elde edilen en yüksek doðruluk: 0.4737

@@ -70,7 +70,7 @@ best_params = fmin(
 print(f'En iyi parametreler: {best_params}')
 
 # En iyi parametreleri ve elde edilen en yüksek doğruluk değerini bir dosyaya kaydet
-with open("som_hyperparameter_optimization_results.txt", "w") as f:
+with open("som_hyperparameter_optimization_results_v1.txt", "w") as f:
     f.write(f"En iyi parametreler: {best_params}\n")
     best_accuracy = 1 - trials.best_trial['result']['loss']
     f.write(f"Elde edilen en yüksek doğruluk: {best_accuracy:.4f}\n")
