@@ -43,6 +43,8 @@ SOM, CNN özellik uzayını görselleştirmek için kullanılır. Sınıflandır
 
 ## Veri Seti
 
+Veri seti tamamen özgündür — hazır ya da açık kaynak bir veri seti kullanılmamıştır. Domatesler satın alındıktan sonra günlük fotoğraflarla takip edilerek çürüme süreci belgelenmiş, her görsel manuel olarak etiketlenmiştir.
+
 | Klasör   | Sınıf      | Görsel |
 |----------|------------|--------|
 | level_1/ | Taze       | 1.416  |
