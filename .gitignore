@@ -1,4 +1,50 @@
-*env/*
-*webapp/example_project/*
-*.idea
-*.idl
+# Ortam
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Veri seti (büyük, repoya dahil değil)
+level_1/
+level_2/
+level_3/
+data/
+
+# CNN feature cache (yeniden üretilebilir)
+models/feature_cache/
+
+# IDE / OS
+.idea/
+.DS_Store
+*.swp
+.claude/
+
+# Ortam değişkenleri
+.env
+
+# Eski model artifact'ları (hybrid model öncesi)
+scaler.pkl
+som_model.pkl
+win_labels_map.pkl
+label_frequency.pkl
+
+# Eski SOM denemeleri
+som.py
+som_v2.py
+som_v3.py
+som_v4.py
+som_v6.py
+som_hyperparameter.py
+som_hyperparameter_optimization_results.txt
+som_run
+
+# Eski/alakasız scriptler
+install.sh
+video_installer.py
+video_to_image_splitter.py
+properties/
+note
+
+# Stray test görselleri
+64_100.jpg
+DSCN4068.jpg_0_2757.jpg
